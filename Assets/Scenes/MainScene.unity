@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3047632032510263113, guid: 8f62fe21ed6d93249baa7b6981ebe8fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.51
+      value: 2.208
       objectReference: {fileID: 0}
     - target: {fileID: 3047632032510263113, guid: 8f62fe21ed6d93249baa7b6981ebe8fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -754,7 +754,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -795,7 +795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926271751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 1.797, z: -0.784}
+  m_LocalPosition: {x: -0.39, y: 1.797, z: -0.779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1057,6 +1057,9 @@ MonoBehaviour:
   brewingComplete:
     m_PersistentCalls:
       m_Calls: []
+  brewingDuration: 5
+  brewingTimer: 0
+  brewing: 0
 --- !u!1001 &7649963052728171905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1070,7 +1073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226185125310138420, guid: 6229e0a615de1d444923197ff5c01df1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5592537
+      value: 2.2572536
       objectReference: {fileID: 0}
     - target: {fileID: 7416101529729928652, guid: 6229e0a615de1d444923197ff5c01df1, type: 3}
       propertyPath: m_Name
