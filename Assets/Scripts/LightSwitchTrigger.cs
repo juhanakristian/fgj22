@@ -24,6 +24,8 @@ public class LightSwitchTrigger : MonoBehaviour
 	if (enabled == isOn)
 		return;
 
+	isOn = enabled;
+
 	if (enabled)
 		toggledOn.Invoke();
 	else
