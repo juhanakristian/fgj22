@@ -101,7 +101,7 @@ Shader "FGJ/Highlight"
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
 		// TODO: Does not scale uniformly but good enough for now.
-		o.vertex.xyz *= _Width;
+		o.vertex.xy *= _Width;
 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);

@@ -28,7 +28,7 @@ public class RigidbodyDrag : MonoBehaviour
 	public Material highlightMaterial;
 
 	/// Currently dragged object.
-	private Rigidbody target;
+	public GameObject target;
 
 	/// Joint used for dragging.
 	private Transform joint;
@@ -122,6 +122,8 @@ public class RigidbodyDrag : MonoBehaviour
 		dragj.rotationDriveMode = RotationDriveMode.Slerp;
 
 		joint = dragj.transform;
+
+		dragStart.Invoke();
 	}
 
 	public void Detach()
@@ -131,6 +133,8 @@ public class RigidbodyDrag : MonoBehaviour
 
 		Destroy(joint.gameObject);
 		joint = null;
+
+		dragEnd.Invoke();
 	}
 
 	public bool IsDragging()
@@ -188,5 +192,6 @@ public class RigidbodyDrag : MonoBehaviour
 		}
 
 		mr.materials = mats;
+		this.target = target.gameObject;
 	}
 }
