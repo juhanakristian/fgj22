@@ -24,6 +24,9 @@ public class RigidbodyDrag : MonoBehaviour
     /// Minimum distance to the drag object.
     public float minDistance = 1.0f;
 
+	/// Maximum distance to pick and drag objects to.
+	public float maxDistance = 2.5f;
+
     /// Material to use for highlight object
     public Material highlightMaterial;
 
@@ -64,6 +67,7 @@ public class RigidbodyDrag : MonoBehaviour
             {
                 distance += Input.mouseScrollDelta.y * 0.5f;
                 distance = Mathf.Max(distance, minDistance);
+			distance = Mathf.Min(distance, maxDistance);
             }
         }
     }
@@ -95,8 +99,7 @@ public class RigidbodyDrag : MonoBehaviour
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, layers))
-        {
+	if (!Physics.Raycast(ray, out hit, maxDistance, layers)) {
             Highlight(null);
             return;
         }
