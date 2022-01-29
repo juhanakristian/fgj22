@@ -5,57 +5,73 @@ using UnityEngine.Events;
 
 public class CoffeeMachine : MonoBehaviour
 {
-	public UnityEvent brewingComplete; 
-	public float brewingDuration = 5.0f;
-	public float brewingTimer = 0.0f;
-	public bool brewing = false;
+    public UnityEvent brewingComplete;
+    public float brewingDuration = 5.0f;
+    public float brewingTimer = 0.0f;
+    public bool brewing = false;
 
-	private IEnumerator coro;
+    private bool hasWater = false;
 
-	public void StartBrewing()
-	{
-		StopBrewing();
+    public ParticleSystem particles;
 
-		// Already brewed?
-		if (brewingTimer >= brewingDuration)
-			return;
+    private IEnumerator coro;
 
-		Debug.Log("Brewing...", this);
-		coro = Brew();
-		brewing = true;
-		StartCoroutine(coro);
-	}
+    public void StartBrewing()
+    {
+        StopBrewing();
 
-	public void StopBrewing()
-	{
-		if (!brewing)
-			return;
+        if (!hasWater) return;
 
-		brewing = false;
-		Debug.Log("Brewing canceled", this);
+        // Already brewed?
+        if (brewingTimer >= brewingDuration)
+            return;
 
-		StopCoroutine(coro);
-	}
+        Debug.Log("Brewing...", this);
+        coro = Brew();
+        brewing = true;
+        particles.Play();
+        StartCoroutine(coro);
+    }
 
-	// Start is called before the first frame update
-	void Start()
-	{
-	}
+    public void StopBrewing()
+    {
+        if (!brewing)
+            return;
 
-	// Update is called once per frame
-	void Update()
-	{
+        brewing = false;
+        Debug.Log("Brewing canceled", this);
 
-	}
+        particles.Stop();
+        StopCoroutine(coro);
+    }
 
-	private IEnumerator Brew()
-	{
-		while (brewingTimer < brewingDuration) {
-			yield return new WaitForSeconds(0.1f);
-			brewingTimer += 0.1f;
-		}
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
 
-		Debug.Log("Brewing done", this);
-		brewingComplete.Invoke();
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private IEnumerator Brew()
+    {
+        while (brewingTimer < brewingDuration)
+        {
+            yield return new WaitForSeconds(0.1f);
+            brewingTimer += 0.1f;
+        }
+
+        Debug.Log("Brewing done", this);
+        brewingComplete.Invoke();
+    }
+
+
+    public void OnWaterPoured()
+    {
+        hasWater = true;
+    }
+
 }
