@@ -24,16 +24,28 @@ public class RigidbodyDrag : MonoBehaviour
 	/// Minimum distance to the drag object.
 	public float minDistance = 1.0f;
 
+	/// Material to use for highlight object
+	public Material highlightMaterial;
+
 	/// Currently dragged object.
 	private Rigidbody target;
 
 	/// Joint used for dragging.
 	private Transform joint;
 
+	private GameObject highlightObject;
+	private GameObject highlightMeshObject;
+
+	void Start()
+	{
+		if (!highlightMaterial)
+			Debug.LogWarning("No highlight material assigned", this);
+	}
+
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0)) {
-			DragByRaycast(Input.mousePosition);
+		if (!IsDragging()) {
+			CheckPick(Input.mousePosition, Input.GetMouseButtonDown(0));
 		}
 
 		if (Input.GetMouseButtonUp(0)) {
@@ -64,19 +76,29 @@ public class RigidbodyDrag : MonoBehaviour
 		joint.position = worldPos;
 	}
 
-	public void DragByRaycast(Vector3 screenPos, float maxDistance=Mathf.Infinity)
+	public void CheckPick(Vector3 screenPos, bool startDragging)
 	{
-		RaycastHit hit;
+		// Stop dragging previous object
+		Detach();
 
+		RaycastHit hit;
 		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-		if (!Physics.Raycast(ray, out hit, maxDistance, layers))
+		if (!Physics.Raycast(ray, out hit, Mathf.Infinity, layers)) {
+			Highlight(null);
 			return;
+		}
 
-		if (!hit.rigidbody)
+		// Hit only a collider? Cant drag that.
+		if (!hit.rigidbody) {
+			Highlight(null);
 			return;
+		}
 
-		Attach(hit.rigidbody, hit.point);
+		Highlight(hit.rigidbody.gameObject);
+
+		if (startDragging)
+			Attach(hit.rigidbody, hit.point);
 	}
 
 	/// Drag point is specified in world coordinates.
@@ -111,6 +133,11 @@ public class RigidbodyDrag : MonoBehaviour
 		joint = null;
 	}
 
+	public bool IsDragging()
+	{
+		return joint != null;
+	}
+
 	public JointDrive NewJointDrive()
 	{
 		JointDrive ret = new JointDrive();
@@ -120,5 +147,43 @@ public class RigidbodyDrag : MonoBehaviour
 		ret.maximumForce = Mathf.Infinity;
 	
 		return ret;
+	}
+
+	public void Highlight(GameObject target)
+	{
+		// Nothing to do?
+		if (highlightObject == target)
+			return;
+
+		// Remove old highlight
+		Destroy(highlightMeshObject);
+		highlightMeshObject = null;
+
+		highlightObject = target;
+
+		if (!target)
+			return;
+
+		var srcf = target.GetComponent<MeshFilter>();
+		if (!srcf) {
+			// No mesh filters in the object to be highlighted?
+			return;
+		}
+
+		var srcr = target.GetComponent<MeshRenderer>();
+
+		highlightMeshObject = new GameObject();
+		highlightMeshObject.transform.SetParent(target.transform, false);
+		var mr = highlightMeshObject.AddComponent<MeshRenderer>();
+		var mf = highlightMeshObject.AddComponent<MeshFilter>();
+
+		mf.sharedMesh = srcf.sharedMesh;
+
+		var mats = srcr.materials;
+		for (int i = 0; i < mats.Length; ++i) {
+			mats[i] = highlightMaterial;
+		}
+
+		mr.materials = mats;
 	}
 }
