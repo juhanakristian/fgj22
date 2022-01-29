@@ -10,9 +10,21 @@ public class MenuController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    public void OnStartGame(){
+        // Load the scene in a dirty way..
+        Debug.Log("OnStartGame called");
     }
+
+    public void OnShowCredits(){
+        // Present developers somehow
+        Debug.Log("OnShowCredits called");
+    }
+
+    public void OnQuitGame(){
+        // Quit / Exit from the game
+        Debug.Log("OnExitGame called!");
+    }
+
+
 }
