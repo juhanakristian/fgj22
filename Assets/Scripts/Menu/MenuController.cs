@@ -5,6 +5,12 @@ using UnityEngine;
 public class MenuController : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public GameObject creditsVCamera;
+    public GameObject creditsLight;
+    private bool showCreditsState=false;
+
+
     void Start()
     {
         
@@ -18,7 +24,18 @@ public class MenuController : MonoBehaviour
 
     public void OnShowCredits(){
         // Present developers somehow
-        Debug.Log("OnShowCredits called");
+         Debug.Log("OnShowCredits called");
+        creditsLight.SetActive(true);
+
+        if(!showCreditsState){
+            creditsVCamera.SetActive(true);
+            showCreditsState = true;
+        }
+        else {
+            Debug.LogWarning("Nuup");
+            creditsVCamera.SetActive(false);
+            showCreditsState = false;
+        }
     }
 
     public void OnQuitGame(){
