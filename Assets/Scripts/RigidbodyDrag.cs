@@ -164,6 +164,9 @@ public class RigidbodyDrag : MonoBehaviour
 		if (!target)
 			return;
 
+		if (!highlightMaterial)
+			return;
+
 		var srcf = target.GetComponent<MeshFilter>();
 		if (!srcf) {
 			// No mesh filters in the object to be highlighted?
