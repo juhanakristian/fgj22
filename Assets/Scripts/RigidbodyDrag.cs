@@ -21,6 +21,9 @@ public class RigidbodyDrag : MonoBehaviour
 	/// Current drag distance.
 	public float distance = 0;
 
+	/// Minimum distance to the drag object.
+	public float minDistance = 1.0f;
+
 	/// Currently dragged object.
 	private Rigidbody target;
 
@@ -39,6 +42,7 @@ public class RigidbodyDrag : MonoBehaviour
 
 		if (joint) {
 			distance += Input.mouseScrollDelta.y * 0.5f;
+			distance = Mathf.Max(distance, minDistance);
 		}
 	}
 
