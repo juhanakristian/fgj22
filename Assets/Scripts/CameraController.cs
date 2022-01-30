@@ -24,10 +24,6 @@ public class CameraController : MonoBehaviour
 			pitch = camera.eulerAngles.x;
 			yaw = camera.eulerAngles.x;
 		}
-
-		if (!anchor) {
-			anchor = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-		}
 	}
 
 	void OnEnable()
@@ -43,8 +39,6 @@ public class CameraController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		camera.transform.position = anchor.position + new Vector3(0, yOffset, 0) - camera.forward * zOffset;
-
 		float mx = Input.GetAxis("Mouse X");
 		float my = Input.GetAxis("Mouse Y");
 
@@ -54,6 +48,13 @@ public class CameraController : MonoBehaviour
 		pitch = Mathf.Min(pitch, maxPitch);
 		pitch = Mathf.Max(pitch, minPitch);
 
-		camera.eulerAngles = new Vector3(pitch, yaw, 0);
+		Vector3 cam = camera.localEulerAngles;
+		Vector3 anc = anchor.eulerAngles;
+
+		cam.x = pitch;
+		anc.y = yaw;
+
+		anchor.eulerAngles = anc;
+		camera.localEulerAngles = cam;
 	}
 }

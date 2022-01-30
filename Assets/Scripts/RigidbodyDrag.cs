@@ -61,11 +61,11 @@ public class RigidbodyDrag : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                joint.Rotate(Camera.main.transform.forward, Input.mouseScrollDelta.y * 3f);
+                joint.Rotate(Camera.main.transform.forward, Input.mouseScrollDelta.y * 10f);
             }
             else
             {
-                distance += Input.mouseScrollDelta.y * 0.5f;
+                distance += Input.mouseScrollDelta.y * 0.1f;
                 distance = Mathf.Max(distance, minDistance);
 			distance = Mathf.Min(distance, maxDistance);
             }
