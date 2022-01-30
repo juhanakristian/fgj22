@@ -14,6 +14,17 @@ public class LightSwitchTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+	if (isOn) {
+	    var r = SwitchObject.transform.localEulerAngles;
+	    r.x = 87;
+	    SwitchObject.transform.localEulerAngles = r;
+	    SwitchObject.GetComponent<Rigidbody>().MoveRotation(SwitchObject.transform.rotation);
+
+		toggledOn.Invoke();
+	}
+	else {
+		toggledOff.Invoke();
+	}
     }
 
     // Update is called once per frame
