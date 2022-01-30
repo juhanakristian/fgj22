@@ -122,15 +122,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090014491372270233, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090014491372270233, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.667
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090014491372270233, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.131
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8090014491372270233, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8867114866237892643, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_Name
-      value: PickledBrains (10)
+      value: PickledBrains (1)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1632120879695713857, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
@@ -190,6 +190,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17840913, y: 0.16639526, z: 0.17840914}
   m_Center: {x: 0, y: 0.0932974, z: -0.000000014901161}
+--- !u!114 &1765799861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378056197657880051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24b85662fa12844cabcb33218058111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenVersion: {fileID: 7312442638765281884, guid: fa8228def6aa71a4b9da83c81dce3248, type: 3}
+  breakForce: 3
+  collisionForce: 0.5
+  collisionClip: {fileID: 8300000, guid: ec8423f649dca984aa0260b3bbc683ea, type: 3}
+  breakClip: {fileID: 8300000, guid: 626b6c6a5d720024eabb5bf2fe5c6124, type: 3}
+  onBroken:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7851158891287921699
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -145,6 +145,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 0
   SwitchObject: {fileID: 8705866063557718662}
+  toggledOn:
+    m_PersistentCalls:
+      m_Calls: []
+  toggledOff:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8705866063557718662
 GameObject:
   m_ObjectHideFlags: 0
