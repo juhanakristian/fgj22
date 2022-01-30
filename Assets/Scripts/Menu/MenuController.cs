@@ -10,6 +10,8 @@ public class MenuController : MonoBehaviour
     public GameObject creditsLight;
     private bool showCreditsState=false;
 
+    public SceneLoadEvent sceneLoadEvent;
+
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class MenuController : MonoBehaviour
     public void OnStartGame(){
         // Load the scene in a dirty way..
         Debug.Log("OnStartGame called");
+        sceneLoadEvent.Raise("StartGame");
+
     }
 
     public void OnShowCredits(){
@@ -32,7 +36,6 @@ public class MenuController : MonoBehaviour
             showCreditsState = true;
         }
         else {
-            Debug.LogWarning("Nuup");
             creditsVCamera.SetActive(false);
             showCreditsState = false;
         }
