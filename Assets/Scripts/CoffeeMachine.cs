@@ -56,13 +56,23 @@ public class CoffeeMachine : MonoBehaviour
 
     private IEnumerator Brew()
     {
+	bool started = false;
 
         while (brewingTimer < brewingDuration)
         {
-		if (!hasWater) yield return new WaitForSeconds(0.1f);
-		if (!hasCoffee) yield return new WaitForSeconds(0.1f);
+		if (!hasWater) {
+			yield return new WaitForSeconds(0.1f);
+			continue;
+		}
+		if (!hasCoffee) {
+			yield return new WaitForSeconds(0.1f);
+			continue;
+		}
 
-		particles.Play();
+		if (!started) {
+			particles.Play();
+			started = true;
+		}
 
             yield return new WaitForSeconds(0.1f);
             brewingTimer += 0.1f;
