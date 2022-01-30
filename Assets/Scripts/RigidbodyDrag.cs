@@ -34,7 +34,8 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
-    public Camera cam;
+    private Camera cam;
+
     public BrainSharer brainSharer;
 
     public Texture2D Crosshair;
@@ -51,17 +52,22 @@ public class RigidbodyDrag : MonoBehaviour
             Debug.LogWarning("No highlight material assigned", this);
 
 
+        try {
+            Vector2 cursorOffset = new Vector2(Crosshair.width / 2, Crosshair.height / 2);
+            Cursor.SetCursor(Crosshair, cursorOffset, CursorMode.ForceSoftware);
+        } catch (UnassignedReferenceException){
+            Debug.LogWarning("No Cursor was set");
+        }
 
-        Vector2 cursorOffset = new Vector2(Crosshair.width / 2, Crosshair.height / 2);
-        Cursor.SetCursor(Crosshair, cursorOffset, CursorMode.ForceSoftware);
 
+        cam = GetComponent<Camera>();
+ 
         if (cam == null){
+            Debug.Log("Using CinemaBrain");
             cam = brainSharer.GetBrain().OutputCamera;
         }
 
-	if (!cam) {
-	      cam = GetComponent<Camera>();
-	}
+     
     }
 
 

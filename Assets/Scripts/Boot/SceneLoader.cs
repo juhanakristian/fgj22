@@ -15,13 +15,17 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
 
+    public bool loadTitleScene = true;
+
 
     private List<AsyncOperation> sceneLoadingOperations = new List<AsyncOperation>();
 
 
     private void Start() 
     {   
-        LoadTitleScene();
+        if(loadTitleScene){
+            LoadTitleScene();
+        }
         
     }
 
