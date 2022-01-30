@@ -34,7 +34,7 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
-    private Camera cam;
+    public Camera cam;
     public BrainSharer brainSharer;
 
     public Texture2D Crosshair;
@@ -55,13 +55,14 @@ public class RigidbodyDrag : MonoBehaviour
         Vector2 cursorOffset = new Vector2(Crosshair.width / 2, Crosshair.height / 2);
         Cursor.SetCursor(Crosshair, cursorOffset, CursorMode.ForceSoftware);
 
-	      cam = GetComponent<Camera>();
-        if(cam == null){
+        if (cam == null){
             cam = brainSharer.GetBrain().OutputCamera;
         }
 
+	if (!cam) {
+	      cam = GetComponent<Camera>();
+	}
     }
-
 
 
 
