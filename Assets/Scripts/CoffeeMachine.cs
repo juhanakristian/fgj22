@@ -11,6 +11,7 @@ public class CoffeeMachine : MonoBehaviour
     public bool brewing = false;
 
     private bool hasWater = false;
+    private bool hasCoffee = false;
 
     public ParticleSystem particles;
 
@@ -20,8 +21,6 @@ public class CoffeeMachine : MonoBehaviour
     {
         StopBrewing();
 
-        if (!hasWater) return;
-
         // Already brewed?
         if (brewingTimer >= brewingDuration)
             return;
@@ -29,7 +28,6 @@ public class CoffeeMachine : MonoBehaviour
         Debug.Log("Brewing...", this);
         coro = Brew();
         brewing = true;
-        particles.Play();
         StartCoroutine(coro);
     }
 
@@ -58,8 +56,14 @@ public class CoffeeMachine : MonoBehaviour
 
     private IEnumerator Brew()
     {
+
         while (brewingTimer < brewingDuration)
         {
+		if (!hasWater) yield return new WaitForSeconds(0.1f);
+		if (!hasCoffee) yield return new WaitForSeconds(0.1f);
+
+		particles.Play();
+
             yield return new WaitForSeconds(0.1f);
             brewingTimer += 0.1f;
         }
@@ -72,6 +76,11 @@ public class CoffeeMachine : MonoBehaviour
     public void OnWaterPoured()
     {
         hasWater = true;
+    }
+
+    public void OnCoffeePoured()
+    {
+        hasCoffee = true;
     }
 
 }
