@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7289192489952881717}
   - component: {fileID: 6014355975288390183}
   - component: {fileID: 6179967961595216691}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CoffeeDrop
   m_TagString: Coffee
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6014355975288390183
 MonoBehaviour:
