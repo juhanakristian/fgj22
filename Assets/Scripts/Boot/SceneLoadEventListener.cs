@@ -34,9 +34,14 @@ public class SceneLoadEventListener : MonoBehaviour
                 sceneLoader.ResetGameScene();
             break;
 
+            case "Exit":
+                sceneLoader.ExitToTitle();
+            break;
+
             default:
                 Debug.LogErrorFormat("OnSceneLoadEventRaised -> Unsupported type:{0}",type);
             break;
+
 
         }
         

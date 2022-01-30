@@ -59,6 +59,14 @@ public class SceneLoader : MonoBehaviour
         Debug.LogWarning("ResetGameScene finished");
     }
 
+    public void ExitToTitle(){
+        UnloadScene(SceneIndex.GAME_SCENE);    
+        LoadScene(SceneIndex.TITLE_SCENE);
+        
+        StartCoroutine(HandleSceneLoadingProgress());
+
+    }
+
     private void LoadScene(SceneIndex sceneIndex){
         if(SceneManager.GetSceneByBuildIndex((int)sceneIndex).isLoaded == false){
             Debug.LogFormat("SceneLoader->LoadScene called for idx:{0}",sceneIndex);

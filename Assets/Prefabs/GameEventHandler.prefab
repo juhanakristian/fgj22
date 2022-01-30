@@ -495,6 +495,7 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   FailCurtain: {fileID: 4743630115666778915}
   FailTextGO: {fileID: 4743630115982318148}
+  sceneLoadEvent: {fileID: 0}
 --- !u!1 &4743630117194329819
 GameObject:
   m_ObjectHideFlags: 0

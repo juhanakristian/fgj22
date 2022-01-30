@@ -27,6 +27,10 @@ public class GameEventHandler : MonoBehaviour
 
     void Update (){
 
+        if(Input.GetKey(KeyCode.Escape)){
+            sceneLoadEvent.Raise("Exit");
+        }
+
         if(!failedState){
             return;
         }

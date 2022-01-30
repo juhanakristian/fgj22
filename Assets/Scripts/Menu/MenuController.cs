@@ -44,6 +44,7 @@ public class MenuController : MonoBehaviour
     public void OnQuitGame(){
         // Quit / Exit from the game
         Debug.Log("OnExitGame called!");
+        Application.Quit();
     }
 
 
