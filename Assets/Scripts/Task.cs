@@ -11,6 +11,8 @@ public class Task : MonoBehaviour
 	public AudioClip startedClip;
 	public AudioClip finishedClip;
 
+	public bool isCompleted = false;
+
 	public List<GameObject> objectsToEnable;
 
 	public List<string> prerequisites;
@@ -26,11 +28,13 @@ public class Task : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
 	}
 
 	public void StartTask()
 	{
+		if (isCompleted)
+			return;
+
 		if (gameObject.active)
 			return;
 
@@ -45,10 +49,16 @@ public class Task : MonoBehaviour
 		foreach (var it in objectsToEnable) {
 			it.SetActive(true);
 		}
+
+		if (tasks.Count == 0 && prerequisites.Count == 0)
+			FinishTask();
 	}
 
 	public void FinishTask()
 	{
+		if (isCompleted)
+			return;
+
 		Debug.Log("Finished", this);
 		completed.Invoke();
 		foreach (var it in objectsToEnable) {
@@ -59,6 +69,8 @@ public class Task : MonoBehaviour
 			source.PlayOneShot(finishedClip);
 
 		gameObject.SetActive(false);
+
+		isCompleted = true;
 	}
 
 	public void FinishPrerequisite(string name)
@@ -69,11 +81,8 @@ public class Task : MonoBehaviour
 
 	public void FinishTask(string name)
 	{
-		if (!gameObject.active)
-			return;
-
 		tasks.Remove(name);
-		if (tasks.Count == 0)
+		if (tasks.Count == 0 && gameObject.active)
 			FinishTask();
 	}
 

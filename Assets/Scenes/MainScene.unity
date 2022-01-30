@@ -1485,7 +1485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132148981381747, guid: baf98751a92104a0ca1e3616e4d85b87, type: 3}
       propertyPath: toggledOn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: start_generator
+      value: generator_started
       objectReference: {fileID: 0}
     - target: {fileID: 919132148981381747, guid: baf98751a92104a0ca1e3616e4d85b87, type: 3}
       propertyPath: toggledOn.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -7305,7 +7305,8 @@ MonoBehaviour:
   finishedClip: {fileID: 0}
   objectsToEnable: []
   prerequisites: []
-  tasks: []
+  tasks:
+  - generator_started
 --- !u!4 &1021201957
 Transform:
   m_ObjectHideFlags: 0
