@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class RigidbodyDrag : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class RigidbodyDrag : MonoBehaviour
     /// Minimum distance to the drag object.
     public float minDistance = 1.0f;
 
-	/// Maximum distance to pick and drag objects to.
-	public float maxDistance = 2.5f;
+    /// Maximum distance to pick and drag objects to.
+    public float maxDistance = 2.5f;
 
     /// Material to use for highlight object
     public Material highlightMaterial;
@@ -33,7 +34,10 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
-    public Camera cam;
+    private Camera cam;
+    public BrainSharer brainSharer;
+
+    public Texture2D Crosshair;
 
     /// Joint used for dragging.
     private Transform joint;
@@ -46,8 +50,20 @@ public class RigidbodyDrag : MonoBehaviour
         if (!highlightMaterial)
             Debug.LogWarning("No highlight material assigned", this);
 
-	cam = GetComponent<Camera>();
+
+
+        Vector2 cursorOffset = new Vector2(Crosshair.width / 2, Crosshair.height / 2);
+        Cursor.SetCursor(Crosshair, cursorOffset, CursorMode.ForceSoftware);
+
+	      cam = GetComponent<Camera>();
+        if(cam == null){
+            cam = brainSharer.GetBrain().OutputCamera;
+        }
+
     }
+
+
+
 
     void Update()
     {
@@ -71,10 +87,14 @@ public class RigidbodyDrag : MonoBehaviour
             {
                 distance += Input.mouseScrollDelta.y * 0.1f;
                 distance = Mathf.Max(distance, minDistance);
-			distance = Mathf.Min(distance, maxDistance);
+                distance = Mathf.Min(distance, maxDistance);
             }
         }
+
+        Cursor.visible = !IsDragging();
     }
+
+    
 
     void FixedUpdate()
     {
@@ -83,6 +103,8 @@ public class RigidbodyDrag : MonoBehaviour
             OnMouseDrag();
         }
     }
+
+
 
     void OnMouseDrag()
     {
@@ -103,7 +125,8 @@ public class RigidbodyDrag : MonoBehaviour
         RaycastHit hit;
         var ray = cam.ScreenPointToRay(Input.mousePosition);
 
-	if (!Physics.Raycast(ray, out hit, maxDistance, layers)) {
+        if (!Physics.Raycast(ray, out hit, maxDistance, layers))
+        {
             Highlight(null);
             return;
         }
