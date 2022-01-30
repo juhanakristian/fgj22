@@ -33,6 +33,8 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
+    public Camera cam;
+
     /// Joint used for dragging.
     private Transform joint;
 
@@ -43,6 +45,8 @@ public class RigidbodyDrag : MonoBehaviour
     {
         if (!highlightMaterial)
             Debug.LogWarning("No highlight material assigned", this);
+
+	cam = GetComponent<Camera>();
     }
 
     void Update()
@@ -61,7 +65,7 @@ public class RigidbodyDrag : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                joint.Rotate(Camera.main.transform.forward, Input.mouseScrollDelta.y * 10f);
+                joint.Rotate(cam.transform.forward, Input.mouseScrollDelta.y * 10f);
             }
             else
             {
@@ -87,7 +91,7 @@ public class RigidbodyDrag : MonoBehaviour
 
         Vector3 screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
 
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        Vector3 worldPos = cam.ScreenToWorldPoint(screenPos);
         joint.position = worldPos;
     }
 
@@ -97,7 +101,7 @@ public class RigidbodyDrag : MonoBehaviour
         Detach();
 
         RaycastHit hit;
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var ray = cam.ScreenPointToRay(Input.mousePosition);
 
 	if (!Physics.Raycast(ray, out hit, maxDistance, layers)) {
             Highlight(null);
