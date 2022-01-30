@@ -7,6 +7,10 @@ public class Task : MonoBehaviour
 {
 	public UnityEvent started;
 	public UnityEvent completed;
+	public AudioClip clips;
+	public AudioSource source;
+
+	public List<GameObject> objectsToEnable;
 
 	// Start is called before the first frame update
 	void Start()
@@ -24,11 +28,18 @@ public class Task : MonoBehaviour
 	{
 		Debug.Log("Started", this);
 		started.Invoke();
+
+		foreach (var it in objectsToEnable) {
+			it.SetActive(true);
+		}
 	}
 
 	public void FinishTask()
 	{
 		Debug.Log("Finished", this);
 		completed.Invoke();
+		foreach (var it in objectsToEnable) {
+			it.SetActive(false);
+		}
 	}
 }
