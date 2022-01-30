@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 287873520602829497}
   - component: {fileID: 2533425024968188507}
   - component: {fileID: 5958580642810938399}
+  - component: {fileID: 1528332249307771150}
   m_Layer: 0
   m_Name: "lasikartiomalja ehj\xE4"
   m_TagString: Untagged
@@ -112,3 +113,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1528332249307771150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679826985238763853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24b85662fa12844cabcb33218058111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenVersion: {fileID: 2697689133320478100, guid: 62fb84c9c0f041a42bd69f2e8931afe7, type: 3}
+  breakForce: 100
+  breakClip: {fileID: 8300000, guid: 8e17759b1389ac54abd6b6fdcea05022, type: 3}

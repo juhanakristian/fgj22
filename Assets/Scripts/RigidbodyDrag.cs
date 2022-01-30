@@ -155,7 +155,7 @@ public class RigidbodyDrag : MonoBehaviour
 
     public bool IsDragging()
     {
-        return joint != null;
+        return joint != null && target != null;
     }
 
     public JointDrive NewJointDrive()
