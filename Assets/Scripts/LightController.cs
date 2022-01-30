@@ -24,7 +24,7 @@ public class LightController : MonoBehaviour
 		startTime = Time.time;
 		origIntensity = target.intensity;
 
-		ToggleOn();
+		ToggleOff();
 	}
 
 	// Update is called once per frame

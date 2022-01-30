@@ -126,5 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenVersion: {fileID: 2697689133320478100, guid: 62fb84c9c0f041a42bd69f2e8931afe7, type: 3}
-  breakForce: 100
-  breakClip: {fileID: 8300000, guid: 8e17759b1389ac54abd6b6fdcea05022, type: 3}
+  breakForce: 4
+  collisionForce: 0.5
+  collisionClip: {fileID: 8300000, guid: 173c2f770e325f54081c49180a7ca035, type: 3}
+  breakClip: {fileID: 8300000, guid: 626b6c6a5d720024eabb5bf2fe5c6124, type: 3}
+  onBroken:
+    m_PersistentCalls:
+      m_Calls: []
