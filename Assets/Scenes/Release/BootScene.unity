@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 546331900}
-  loadTitleScene: 0
+  loadTitleScene: 1
 --- !u!1 &942538719
 GameObject:
   m_ObjectHideFlags: 0

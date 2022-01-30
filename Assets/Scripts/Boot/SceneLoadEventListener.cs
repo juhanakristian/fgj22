@@ -30,6 +30,10 @@ public class SceneLoadEventListener : MonoBehaviour
                 sceneLoader.InitGameScene();
             break;
 
+            case "RestartGame":
+                sceneLoader.ResetGameScene();
+            break;
+
             default:
                 Debug.LogErrorFormat("OnSceneLoadEventRaised -> Unsupported type:{0}",type);
             break;

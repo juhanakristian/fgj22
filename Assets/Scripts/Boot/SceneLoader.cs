@@ -50,6 +50,15 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public void ResetGameScene(){
+        Debug.LogWarning("ResetGameScene called");
+        
+        UnloadScene(SceneIndex.GAME_SCENE);
+        LoadScene(SceneIndex.GAME_SCENE);
+    
+        Debug.LogWarning("ResetGameScene finished");
+    }
+
     private void LoadScene(SceneIndex sceneIndex){
         if(SceneManager.GetSceneByBuildIndex((int)sceneIndex).isLoaded == false){
             Debug.LogFormat("SceneLoader->LoadScene called for idx:{0}",sceneIndex);

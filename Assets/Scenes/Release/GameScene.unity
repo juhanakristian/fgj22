@@ -11985,6 +11985,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4743630116558022377, guid: 6a665e32a2cd34f40ac5fb8d9446d032, type: 3}
+      propertyPath: sceneLoadEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 16daf62cd1c5e004e90cd99629c020be, type: 2}
     - target: {fileID: 4743630116558022382, guid: 6a665e32a2cd34f40ac5fb8d9446d032, type: 3}
       propertyPath: m_Name
       value: GameEventHandler

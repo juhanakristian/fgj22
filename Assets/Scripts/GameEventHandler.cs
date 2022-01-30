@@ -13,6 +13,8 @@ public class GameEventHandler : MonoBehaviour
     private TextMeshProUGUI failTextTMPro;
     bool failedState = false;
 
+    public SceneLoadEvent sceneLoadEvent;
+
     private void Start() {
         FailCurtain.SetActive(false);
         failTextTMPro = FailTextGO.GetComponent<TextMeshProUGUI>();
@@ -56,7 +58,11 @@ public class GameEventHandler : MonoBehaviour
 
     public void ReloadScene()
      {
-         Scene scene = SceneManager.GetActiveScene();
-         SceneManager.LoadScene(scene.name);
+
+        if (sceneLoadEvent){
+            sceneLoadEvent.Raise("RestartGame");
+        }
+
+
      }
 }
