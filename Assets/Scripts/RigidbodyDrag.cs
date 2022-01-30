@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class RigidbodyDrag : MonoBehaviour
 {
@@ -33,7 +34,8 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
-    public Camera cam;
+    private Camera cam;
+    public BrainSharer brainSharer;
 
     public Texture2D Crosshair;
 
@@ -48,11 +50,20 @@ public class RigidbodyDrag : MonoBehaviour
         if (!highlightMaterial)
             Debug.LogWarning("No highlight material assigned", this);
 
-        cam = GetComponent<Camera>();
+
 
         Vector2 cursorOffset = new Vector2(Crosshair.width / 2, Crosshair.height / 2);
         Cursor.SetCursor(Crosshair, cursorOffset, CursorMode.ForceSoftware);
+
+	      cam = GetComponent<Camera>();
+        if(cam == null){
+            cam = brainSharer.GetBrain().OutputCamera;
+        }
+
     }
+
+
+
 
     void Update()
     {
@@ -83,6 +94,8 @@ public class RigidbodyDrag : MonoBehaviour
         Cursor.visible = !IsDragging();
     }
 
+    
+
     void FixedUpdate()
     {
         if (joint)
@@ -90,6 +103,8 @@ public class RigidbodyDrag : MonoBehaviour
             OnMouseDrag();
         }
     }
+
+
 
     void OnMouseDrag()
     {
