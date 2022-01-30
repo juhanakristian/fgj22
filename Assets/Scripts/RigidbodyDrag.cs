@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class RigidbodyDrag : MonoBehaviour
 {
@@ -33,7 +34,8 @@ public class RigidbodyDrag : MonoBehaviour
     /// Currently dragged object.
     public GameObject target;
 
-    public Camera cam;
+    private Camera cam;
+    public BrainSharer brainSharer;
 
     /// Joint used for dragging.
     private Transform joint;
@@ -46,8 +48,14 @@ public class RigidbodyDrag : MonoBehaviour
         if (!highlightMaterial)
             Debug.LogWarning("No highlight material assigned", this);
 
-	cam = GetComponent<Camera>();
+	    cam = GetComponent<Camera>();
+        if(cam == null){
+            cam = brainSharer.GetBrain().OutputCamera;
+        }
     }
+
+
+
 
     void Update()
     {
@@ -76,6 +84,8 @@ public class RigidbodyDrag : MonoBehaviour
         }
     }
 
+    
+
     void FixedUpdate()
     {
         if (joint)
@@ -83,6 +93,8 @@ public class RigidbodyDrag : MonoBehaviour
             OnMouseDrag();
         }
     }
+
+
 
     void OnMouseDrag()
     {
