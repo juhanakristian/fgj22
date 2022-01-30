@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8867114866237892643, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
       propertyPath: m_Name
-      value: PickledBrains (1)
+      value: PickledBrains
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1632120879695713857, guid: 8b82b634cb1b39b41b4632578aecf0f3, type: 3}
@@ -205,7 +205,7 @@ MonoBehaviour:
   brokenVersion: {fileID: 7312442638765281884, guid: fa8228def6aa71a4b9da83c81dce3248, type: 3}
   breakForce: 3
   collisionForce: 0.5
-  collisionClip: {fileID: 8300000, guid: ec8423f649dca984aa0260b3bbc683ea, type: 3}
+  collisionClip: {fileID: 8300000, guid: 95b8b078b42e52d4e8c8ed6c8a4093da, type: 3}
   breakClip: {fileID: 8300000, guid: 626b6c6a5d720024eabb5bf2fe5c6124, type: 3}
   onBroken:
     m_PersistentCalls:
